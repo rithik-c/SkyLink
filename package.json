@@ -1,0 +1,34 @@
+{
+  "name": "skylink",
+  "version": "1.0.0",
+  "description": "Multi-room Chat and Video Web Application built with NodeJS and socket.io",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rithik-c/SkyLink.git"
+  },
+  "keywords": [
+    "chat",
+    "video",
+    "multi-room-chat",
+    "multi-user-chat",
+    "virtual-event",
+    "nodejs",
+    "websockets",
+    "socket.io"
+  ],
+  "author": "Rithik Choudhary",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  },
+  "bugs": {
+    "url": "https://github.com/rithik-c/SkyLink/issues"
+  },
+  "homepage": "https://github.com/rithik-c/SkyLink#readme"
+}
