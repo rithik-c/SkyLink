@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <!-- Info & Metadata -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -23,41 +23,42 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 
-</head>
-<body>
+  </head>
+  <body>
+      <br>
     <div class="container container-fluid col-8 offset-2">
-        <div class="row col-12">
-          <h2 class="col-4 offset-4 text-center pb-3">
-            <strong>Chat <span>App</span></strong>
-          </h2>
+      <div class="row col-12">
+        <h2 class="col-4 offset-3 text-center pb-3">
+          <strong>Sky <span>Link</span></strong>
+        </h2>
+      </div>
+      <div class="row">
+        <div id="sidebar" class="col-3">
+          <h4><strong>Rooms</strong> <span id="create-room">+</span></h4>
+          <ul id="roomlist"></ul>
+          <h4><strong>Users</strong></h4>
+          <ul id="userlist"></ul>
         </div>
-        <div class="row">
-          <div id="sidebar" class="col-3">
-            <p>Rooms <span id="create-room">+</span></p>
-            <ul id="roomlist"></ul>
-            <p>Users</p>
-            <ul id="userlist"></ul>
+        <div id="char-area" class="col-9">
+          <div class="row col-12">
+            <div id="chat-display" class="col-12">
+              <div id="msg"></div>
+            </div>
           </div>
-          <div id="char-area" class="col-9">
-            <div class="row col-12">
-              <div id="chat-display" class="col-12">
-                <div id="msg"></div>
-              </div>
-            </div>
-  
-            <div class="row col-12">
-              <input
-                class="col-10"
-                type="text"
-                id="message"
-                placeholder="Type your message"
-              />
-              <button class="col-2" id="send">Send</button>
-            </div>
+
+          <div class="row col-12">
+            <input
+              class="col-10"
+              type="text"
+              id="message"
+              placeholder="  Type your message"
+            />
+            <button class="col-2" id="send">Send</button>
           </div>
         </div>
       </div>
-  
-      <script src="/app.js"></script>
-</body>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
 </html>
