@@ -31,8 +31,6 @@ createRoomBtn.addEventListener("click", function () {
     
 socket.on("connect", function() {
 
-    // $(document).ready(function(){
-
     jQuery.ajax({
         type: 'get',
         dataType: 'json',
@@ -59,8 +57,6 @@ socket.on("connect", function() {
         }
     });
 
-    // });
-    
 });
 
 
@@ -79,12 +75,17 @@ socket.on("updateChat", function(username, data) {
 });
 
 
-socket.on("updateUsers", function(userList) {
+socket.on("updateClientUsers", function(userList) {
+
     userlist.innerHTML = "";
 
-    for (var user in userList) {
-        userlist.innerHTML += "<li>" + user + "</li>";
-    }
+    console.log("userList:")
+    console.log(userList)
+    userList.forEach(element => {
+        console.log(element);
+        userlist.innerHTML += "<li>" + element + "</li>";
+    });
+
 });
 
 
@@ -114,7 +115,10 @@ socket.on("updateRooms", function(rooms, newRoom) {
 function changeRoom(room) {
 
     if (room != currentRoom) {
+        socket.emit("updateRoomUsers", 1);
         socket.emit("updateRooms", room);
+        socket.emit("updateRoomUsers", 2);
+
         document.getElementById(currentRoom).classList.remove("text-warning");
         currentRoom = room;
         document.getElementById(currentRoom).classList.add("text-warning");

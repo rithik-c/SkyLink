@@ -15,9 +15,9 @@ app.use(express.static("public"));
 // Global variables to hold all usernames and rooms created
 var usernames = {
     All_Names : [],
-    Alpha : [],
-    Bravo : [],
-    Charlie : []
+    "Alpha" : [],
+    "Bravo" : [],
+    "Charlie" : []
 };
 var rooms = ["Alpha", "Bravo", "Charlie"];
 
@@ -28,17 +28,49 @@ io.on("connection", function(socket) {
     socket.on("createUser", function(username) {
 
         usernames.All_Names.push(username);
-        socket.username = username;
+        usernames.All_Names.sort();
         usernames[username] = username;
+
+        socket.username = username;
         socket.currentRoom = "Alpha";
+        usernames[socket.currentRoom].push(socket.username);
+        usernames[socket.currentRoom].sort();
+
         socket.join("Alpha");
         socket.emit("updateChat", "INFO", "You have joined Alpha room");
         socket.broadcast
           .to("Alpha")
           .emit("updateChat", "INFO", username + " has joined Alpha room");
-        io.sockets.emit("updateUsers", usernames);
+        
+        io.sockets.emit("updateClientUsers", usernames[socket.currentRoom]);
         socket.emit("updateRooms", rooms, "Alpha");
-        // console.log(usernames.All_Names);
+        console.log(usernames["All_Names"]);
+        console.log(usernames[socket.currentRoom]);
+    });
+
+    // socket.broadcast.emit sends message to all other clients except newly created connection
+    // io.sockets.emit sends message to all clients
+
+
+    socket.on("updateRoomUsers", function(option){
+
+        if (option == 1){
+            if (usernames[socket.currentRoom]){
+                var index = usernames[socket.currentRoom].indexOf(socket.username);
+                if (index != -1) usernames[socket.currentRoom].splice(index, 1);
+                usernames[socket.currentRoom].sort();
+                io.sockets
+                    .to(socket.currentRoom)
+                    .emit("updateClientUsers", usernames[socket.currentRoom]);
+            }
+        } else if (option == 2){
+            if (usernames[socket.currentRoom]) usernames[socket.currentRoom].push(socket.username);
+            usernames[socket.currentRoom].sort();
+            io.sockets
+                .to(socket.currentRoom)
+                .emit("updateClientUsers", usernames[socket.currentRoom]);
+        }
+
     });
 
 
@@ -58,6 +90,7 @@ io.on("connection", function(socket) {
 
 
     socket.on("updateRooms", function(room) {
+
         socket.broadcast
           .to(socket.currentRoom)
           .emit("updateChat", "INFO", socket.username + " left room");
@@ -76,11 +109,19 @@ io.on("connection", function(socket) {
         var index = usernames.All_Names.indexOf(socket.username);
         if (index != -1) usernames.All_Names.splice(index, 1);
 
-        // var socketRoom = socket.currentRoom;
-        // index = usernames.socketRoom.indexOf(socket.username);
-        // if (index != -1) usernames.socketRoom.splice(index, 1);
+        var roomUsers = usernames[socket.currentRoom];
 
-        io.sockets.emit("updateUsers", usernames);
+        console.log("roomUsers:");
+        console.log(roomUsers);
+        if (roomUsers){
+            index = roomUsers.indexOf(socket.username);
+            if (index != -1) roomUsers.splice(index, 1);
+            usernames[socket.currentRoom] = roomUsers;
+        }
+
+        socket.broadcast
+          .to(socket.currentRoom)
+          .emit("updateClientUsers", usernames[socket.currentRoom]);
         socket.broadcast.emit("updateChat", "INFO", socket.username + " has disconnected");
     });
 
