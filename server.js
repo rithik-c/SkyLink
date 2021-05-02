@@ -72,9 +72,9 @@ io.on("connection", function(socket) {
 
       
     socket.on("disconnect", function() {
-        // delete usernames[socket.username];
-        // var index = usernames.All_Names.indexOf(socket.username);
-        // if (index != -1) usernames.All_Names.splice(index, 1);
+        delete usernames[socket.username];
+        var index = usernames.All_Names.indexOf(socket.username);
+        if (index != -1) usernames.All_Names.splice(index, 1);
 
         // var socketRoom = socket.currentRoom;
         // index = usernames.socketRoom.indexOf(socket.username);
