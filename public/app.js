@@ -37,8 +37,6 @@ socket.on("connect", function() {
         url: '/getNames',
         success: function (data) {
     
-            console.log(data); 
-
             let name = prompt("Enter name: ");
             while (data.indexOf(name) != -1 || name == ""){
                 if (data.indexOf(name) != -1) name = prompt("Username Already Exists! Enter Name: ");
@@ -79,10 +77,7 @@ socket.on("updateClientUsers", function(userList) {
 
     userlist.innerHTML = "";
 
-    console.log("userList:")
-    console.log(userList)
     userList.forEach(element => {
-        console.log(element);
         userlist.innerHTML += "<li>" + element + "</li>";
     });
 

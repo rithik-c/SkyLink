@@ -44,8 +44,6 @@ io.on("connection", function(socket) {
         
         io.sockets.emit("updateClientUsers", usernames[socket.currentRoom]);
         socket.emit("updateRooms", rooms, "Alpha");
-        console.log(usernames["All_Names"]);
-        console.log(usernames[socket.currentRoom]);
     });
 
     // socket.broadcast.emit sends message to all other clients except newly created connection
@@ -111,8 +109,6 @@ io.on("connection", function(socket) {
 
         var roomUsers = usernames[socket.currentRoom];
 
-        console.log("roomUsers:");
-        console.log(roomUsers);
         if (roomUsers){
             index = roomUsers.indexOf(socket.username);
             if (index != -1) roomUsers.splice(index, 1);
