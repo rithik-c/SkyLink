@@ -118,7 +118,7 @@ io.on("connection", function(socket) {
         socket.broadcast
           .to(socket.currentRoom)
           .emit("updateClientUsers", usernames[socket.currentRoom]);
-        socket.broadcast.emit("updateChat", "INFO", socket.username + " has disconnected");
+        if (socket.username) socket.broadcast.emit("updateChat", "INFO", socket.username + " has disconnected");
     });
 
 });
