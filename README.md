@@ -2,7 +2,7 @@
 
 A Virtual Event Platform built with NodeJs and Socket.IO.
 
-<img src="skylink-logo.png" />
+<img src="graphics/skylink-logo.png" />
 
 Features:
  - TBA
