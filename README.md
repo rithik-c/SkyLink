@@ -1,4 +1,4 @@
-# SkyLink
+# 📲 SkyLink
 
 A Virtual Event Platform built with Node.js and Socket.IO.
 
@@ -31,7 +31,8 @@ Technologies:
  - "Sent at" feature (when you hover over a message)
  - "Is typing" feature that shows if another user is typing
 -->
-## Usage
+
+## 🔨 Set-Up
 To install dependency:
 `npm install`
 
@@ -41,11 +42,11 @@ To run app:
 Open your browser and go to:
 `localhost:5000`
 
-## Demo
+## 🎥 Demo
 https://user-images.githubusercontent.com/55114012/142771880-42ac41e2-b6ee-4409-a145-8d56c41866d1.mp4
 
-## Contributing
+## 💡 Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-## License
+## 📃 License
 Distributed under the [MIT](https://choosealicense.com/licenses/mit/) License. See `LICENSE` for more information.
