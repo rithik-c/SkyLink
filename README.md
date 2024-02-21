@@ -43,7 +43,7 @@ Open your browser and go to:
 `localhost:5000`
 
 ## 🎥 Demo
-https://user-images.githubusercontent.com/55114012/142771880-42ac41e2-b6ee-4409-a145-8d56c41866d1.mp4
+<video src="https://github.com/rithik-c/SkyLink/blob/main/graphics/SkyLink_Demo.mp4" controls title="SkyLink"></video>
 
 ## 💡 Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
